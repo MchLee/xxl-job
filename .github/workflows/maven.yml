@@ -23,5 +23,5 @@ jobs:
       run: |
         mvn -B package --file pom.xml
         docker login --username $ALIYUN_USERNAME --password $ALIYUN_PASSWORD $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE
-        docker build . --file packaging/Dockerfile.backend-server --tag $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE/$ALIYUN_REPO_NAME:latest
+        docker build . --file xxl-job-admin/Dockerfile --tag $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE/$ALIYUN_REPO_NAME:latest
         docker push $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE/$ALIYUN_REPO_NAME:latest
