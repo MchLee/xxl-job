@@ -201,4 +201,11 @@ public class JobGroupController {
 		return jobGroup!=null?new ReturnT<XxlJobGroup>(jobGroup):new ReturnT<XxlJobGroup>(ReturnT.FAIL_CODE, null);
 	}
 
+	@RequestMapping("/loadByAppName")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<XxlJobGroup> loadByAppName(String appName){
+		XxlJobGroup jobGroup = xxlJobGroupDao.loadByAppName(appName);
+		return jobGroup!=null?new ReturnT<XxlJobGroup>(jobGroup):new ReturnT<XxlJobGroup>(ReturnT.FAIL_CODE, null);
+	}
 }

@@ -1,5 +1,6 @@
 package com.xxl.job.admin.controller;
 
+import com.xxl.job.admin.controller.annotation.PermissionLimit;
 import com.xxl.job.admin.core.cron.CronExpression;
 import com.xxl.job.admin.core.exception.XxlJobException;
 import com.xxl.job.admin.core.model.XxlJobGroup;
@@ -112,10 +113,24 @@ public class JobInfoController {
 	public ReturnT<String> add(XxlJobInfo jobInfo) {
 		return xxlJobService.add(jobInfo);
 	}
+
+	@RequestMapping("/addJob")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> addJob(XxlJobInfo jobInfo) {
+		return xxlJobService.add(jobInfo);
+	}
 	
 	@RequestMapping("/update")
 	@ResponseBody
 	public ReturnT<String> update(XxlJobInfo jobInfo) {
+		return xxlJobService.update(jobInfo);
+	}
+
+	@RequestMapping("/updateJob")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> updateJob(XxlJobInfo jobInfo) {
 		return xxlJobService.update(jobInfo);
 	}
 	
@@ -124,16 +139,44 @@ public class JobInfoController {
 	public ReturnT<String> remove(int id) {
 		return xxlJobService.remove(id);
 	}
+
+	@RequestMapping("/removeJOb")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> removeJOb(int id) {
+		return xxlJobService.remove(id);
+	}
 	
 	@RequestMapping("/stop")
 	@ResponseBody
 	public ReturnT<String> pause(int id) {
 		return xxlJobService.stop(id);
 	}
+
+	@RequestMapping("/stopJob")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> pauseJob(int id) {
+		return xxlJobService.stop(id);
+	}
 	
 	@RequestMapping("/start")
 	@ResponseBody
 	public ReturnT<String> start(int id) {
+		return xxlJobService.start(id);
+	}
+
+	@RequestMapping("/startJob")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> startJob(int id) {
+		return xxlJobService.start(id);
+	}
+
+	@RequestMapping("/loadById")
+	@ResponseBody
+	@PermissionLimit(limit = false)
+	public ReturnT<String> loadById(int id) {
 		return xxlJobService.start(id);
 	}
 	

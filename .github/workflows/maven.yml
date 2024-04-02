@@ -14,4 +14,14 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      env:
+        ALIYUN_REGISTRY_URL: registry.cn-hangzhou.aliyuncs.com
+        ALIYUN_NAMESPACE: limch
+        ALIYUN_REPO_NAME: xxl-job-admin
+        ALIYUN_USERNAME: tb921193_33
+        ALIYUN_PASSWORD: lmlmlmlm8
+      run: |
+        mvn -B package --file pom.xml
+        docker login --username $ALIYUN_USERNAME --password $ALIYUN_PASSWORD $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE
+        docker build . --file packaging/Dockerfile.backend-server --tag $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE/$ALIYUN_REPO_NAME:latest
+        docker push $ALIYUN_REGISTRY_URL/$ALIYUN_NAMESPACE/$ALIYUN_REPO_NAME:latest

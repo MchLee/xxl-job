@@ -15,6 +15,8 @@ import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
 import com.xxl.job.core.glue.GlueTypeEnum;
 import com.xxl.job.core.util.DateUtil;
+import com.xxl.job.core.util.GsonTool;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -431,4 +433,9 @@ public class XxlJobServiceImpl implements XxlJobService {
 		return new ReturnT<Map<String, Object>>(result);
 	}
 
+	@Override
+	public ReturnT<String> loadById(int id) {
+		XxlJobInfo jobInfo = xxlJobInfoDao.loadById(id);
+		return new ReturnT<String>(GsonTool.toJson(jobInfo));
+	}
 }
